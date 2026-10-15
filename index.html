@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+	<!-- Meta Dasar -->
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="robots" content="index, follow" />
+
+	<!-- Preconnect CDN (untuk percepat koneksi ke resource eksternal) -->
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+	<!-- SEO Metadata -->
+	<title>Zaynayan Store - Pulsa hingga PPOB Lengkap</title>
+	<meta name="description" content="Zaynayan Store adalah aplikasi Android berbasis WebView yang menyediakan layanan pembelian pulsa, pembayaran tagihan bulanan, top-up e-wallet, dan diamond game." />
+	<meta name="keywords" content="zaynayan, pulsa murah, topup emoney, bayar tagihan, diamond game, PPOB, aplikasi digital" />
+	<meta name="author" content="PT Zaynayan Digital Solutions" />
+	<link rel="canonical" href="https://zaynayanstore.com/" />
+
+	<!-- Open Graph (Facebook, WhatsApp, LinkedIn) -->
+	<meta property="og:locale" content="id_ID" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Zaynayan Store - From Sparks to Solutions" />
+	<meta property="og:description" content="Beli pulsa, bayar tagihan, top-up e-wallet dan diamond game langsung dari aplikasi Android Zaynayan Store." />
+	<meta property="og:url" content="https://zaynayanstore.com/" />
+	<meta property="og:site_name" content="Zaynayan Store" />
+	<meta property="og:image" content="https://zaynayanstore.com/logo.png" />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta property="og:image:type" content="image/jpeg" />
+	<meta property="article:publisher" content="https://www.facebook.com/zaynayanstore" />
+
+	<!-- Schema.org JSON-LD (Structured Data for Google) -->
+	<script type="application/ld+json">
+	{
+	  "@context": "https://schema.org",
+	  "@type": "Organization",
+	  "name": "Zaynayan Store",
+	  "legalName": "PT Zaynayan Digital Solutions",
+	  "url": "https://zaynayanstore.com",
+	  "logo": "https://zaynayanstore.com/logo.png",
+	  "sameAs": [
+		"https://www.facebook.com/zaynayanstore",
+		"https://instagram.com/zaynayanstore",
+		"https://www.tiktok.com/@zaynayanstores",
+		"https://www.youtube.com/@zaynayanstore",
+		"https://wa.me/6285389635236",
+		"https://t.me/zaynayanstore"
+	  ]
+	}
+	</script>
+
+	<!-- Favicon -->
+	<link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+	<!-- Stylesheet Lokal -->
+	<link rel="stylesheet" href="css/style.css?v=1" />
+</head>
+
+
+<body class="landing">
+    <!-- Progress Bar -->
+	<div id="scrollProgress"></div>
+	<canvas id="particleCanvas"></canvas>
+	
+	<!-- Navigation -->
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <a href="https://zaynayanstore.com/" class="navbar-brand">
+				<i class="fas fa-store"></i>
+				<div>Zaynayan <span>Store</span></div>
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="navbar-menu" id="navbarMenu">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link" data-route="home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#about" class="nav-link" data-route="about">Tentang</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#features" class="nav-link" data-route="features">Fitur</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#screenshots" class="nav-link" data-route="screenshots">Screenshots</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#tutorial" class="nav-link" data-route="tutorial">Tutorial</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#legal" class="nav-link">Legal <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="page/privacy-policy.html" class="dropdown-item">Kebijakan Privasi</a></li>
+                            <li><a href="page/terms-conditions.html" class="dropdown-item">Syarat & Ketentuan</a></li>
+                            <li><a href="page/service-policy.html" class="dropdown-item">Kebijakan Layanan</a></li>
+                            <li><a href="page/refund-policy.html" class="dropdown-item">Pengembalian Dana</a></li>
+                            <li><a href="page/disclaimer.html" class="dropdown-item">Penafian</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <a href="https://linktr.ee/zaynayanstore" class="nav-btn btn-outline">DOWNLOAD</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Header -->
+    <header id="home">
+        <div class="container">
+            <div class="header-content">
+				<div class="header-text">
+					<h1>Solusi Pembayaran & Topup di Ujung Jari Anda</h1>
+					<div class="slogan">From Sparks to Solutions</div>
+					<p>Zaynayan Store adalah aplikasi terbaik untuk pembelian pulsa, pembayaran tagihan, topup e-wallet, dan pembelian diamond game. Nikmati kemudahan transaksi kapan saja, di mana saja.</p>
+					
+					<div class="header-btns">
+						<a href="#download" class="btn btn-primary">
+							<i class="fas fa-download"></i> Download
+						</a>
+						<a href="#features" class="btn btn-secondary">
+							<i class="fas fa-book-open"></i> Selengkapnya
+						</a>
+					</div>
+				</div>
+                
+                <div class="header-image">
+                    <img src="images/web+1.gif" alt="Zaynayan Store App">
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- About Section -->
+    <section class="section about" id="about">
+        <div class="container">
+            <h2 class="section-title">Tentang Kami</h2>
+            <p class="section-subtitle">Zaynayan Store memberikan solusi lengkap untuk semua kebutuhan transaksi digital Anda</p>
+            
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="images/fitur+1.jpg" alt="About Zaynayan Store">
+                </div>
+                
+                <div class="about-text">
+					<p>
+						<strong>Zaynayan Store</strong> adalah aplikasi kebutuhan digital yang memudahkan Anda 
+						melakukan berbagai transaksi penting hanya dalam satu genggaman. Mulai dari 
+						pembelian <mark>pulsa, pembayaran tagihan, top up e-wallet</mark>, hingga 
+						pengisian <mark>diamond game</mark> favorit—semua bisa dilakukan dengan cepat, aman, dan praktis.
+					</p>
+					<p>
+						Sebagai produk resmi dari <strong>PT Zaynayan Digital Solutions</strong>, kami berkomitmen menghadirkan 
+						layanan dengan sistem transaksi yang stabil, harga bersaing, dan dukungan pelanggan yang selalu siap membantu. 
+						Kami percaya bahwa kemudahan akses layanan digital adalah kunci untuk mendukung aktivitas sehari-hari 
+						masyarakat Indonesia.
+					</p>
+					<p>
+						Dengan <em>Zaynayan Store</em>, Anda tidak perlu lagi berpindah-pindah aplikasi. 
+						Cukup satu aplikasi untuk semua kebutuhan digital Anda. 
+						<strong><a href="#download" class="cta-link">Unduh sekarang</a></strong> dan rasakan kemudahannya!
+					</p>
+                    <ul class="feature-list">
+                        <li class="feature-item">
+                            <i class="fas fa-check-circle feature-icon"></i>
+                            <div>
+                                <h4>Terpercaya</h4>
+                            </div>
+                        </li>
+                        <li class="feature-item">
+                            <i class="fa-solid fa-clock feature-icon"></i>
+                            <div>
+                                <h4>Layanan 24 Jam</h4>
+                            </div>
+                        </li>
+                        <li class="feature-item">
+                            <i class="fa-solid fa-circle-dollar-to-slot feature-icon"></i>
+                            <div>
+                                <h4>Harga Kompetitif</h4>
+                            </div>
+                        </li>
+                    </ul>
+                    
+                    <a href="#tutorial" class="btn btn-primary">Pelajari Lebih Lanjut</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="section features" id="features">
+        <div class="container">
+            <h2 class="section-title">Fitur Unggulan</h2>
+            <p class="section-subtitle">Semua yang Anda butuhkan dalam satu aplikasi</p>
+            
+            <div class="features-container">
+                <div class="features-list">
+                    <div class="feature-card">
+                        <div class="feature-icon-container feature-icon-1">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h4>Pulsa & Masa Aktif</h4>
+                            <p>Beli pulsa dan masa aktif semua operator dengan harga terbaik dan proses instan.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon-container feature-icon-2">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h4>Bayar Tagihan</h4>
+                            <p>Bayar tagihan listrik, air, internet, dan BPJS tanpa perlu antri.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon-container feature-icon-3">
+                            <i class="fas fa-wallet"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h4>Topup E-Wallet</h4>
+                            <p>Isi saldo GoPay, OVO, Dana, LinkAja, dan dompet digital lainnya dengan mudah.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon-container feature-icon-4">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h4>Diamond Game</h4>
+                            <p>Beli diamond untuk Mobile Legends, Free Fire, PUBG Mobile, dan game populer lainnya.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="features-image">
+                    <img src="images/fitur+2.jpg" alt="Zaynayan Store Features">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Benefits Section -->
+    <section class="section benefits">
+        <div class="container">
+            <h2 class="section-title">Keuntungan Didapatkan</h2>
+            <p class="section-subtitle">Mengapa memilih Zaynayan Store?</p>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon benefit-icon-1">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+                    <h4>24 Jam</h4>
+                    <p>Layanan siap membantu kapan saja Anda butuhkan, transaksi dapat dilakukan kapanpun.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon benefit-icon-5">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+                    <h4>Lengkap</h4>
+                    <p>Satu aplikasi untuk semua kebutuhan digital: pulsa, tagihan, e-wallet, dan game.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon benefit-icon-2">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <h4>Instan</h4>
+                    <p>Proses transaksi cepat dan real-time, pulsa dan top up langsung masuk.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon benefit-icon-4">
+                        <i class="fa-solid fa-circle-dollar-to-slot"></i>
+                    </div>
+                    <h4>Murah</h4>
+                    <p>Harga kompetitif dengan banyak promo menarik untuk kebutuhan Anda.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon benefit-icon-3">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h4>Aman</h4>
+                    <p>Sistem transaksi terlindungi dengan enkripsi dan validasi berlapis.</p>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    
+    <!-- Screenshots Section -->
+    <section class="section screenshots" id="screenshots">
+        <div class="container">
+            <h2 class="section-title">Tampilan Aplikasi</h2>
+            <p class="section-subtitle">Lihat bagaimana Zaynayan Store memudahkan transaksi Anda</p>
+            
+            <div class="screenshots-slider">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="https://zaynayanstore.com/screenshot/ss_1.png" alt="App Screenshot 1">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://zaynayanstore.com/screenshot/ss_2.png" alt="App Screenshot 2">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://zaynayanstore.com/screenshot/ss_3.png" alt="App Screenshot 3">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://zaynayanstore.com/screenshot/ss_4.png" alt="App Screenshot 4">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://zaynayanstore.com/screenshot/ss_5.png" alt="App Screenshot 5">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://zaynayanstore.com/screenshot/ss_6.png" alt="App Screenshot 6">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="https://zaynayanstore.com/screenshot/ss_7.png" alt="App Screenshot 7">
+                        </div>
+                    </div>
+                    
+					<svg xmlns="http://www.w3.org/2000/svg" class="prev" width="56.898" height="91" viewBox="0 0 56.898 91">
+						<path d="M45.5,0,91,56.9,48.452,24.068,0,56.9Z" transform="translate(0 91) rotate(-90)" fill="#fff" />
+					</svg>
+					<svg xmlns="http://www.w3.org/2000/svg" class="next" width="56.898" height="91" viewBox="0 0 56.898 91">
+						<path d="M45.5,0,91,56.9,48.452,24.068,0,56.9Z" transform="translate(56.898) rotate(90)" fill="#fff" />
+					</svg>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Tutorial Section -->
+	<section class="section tutorial" id="tutorial">
+	  <div class="container">
+		<h2 class="section-title">Video Tutorial</h2>
+		<p class="section-subtitle">Pelajari cara menggunakan Zaynayan Store dengan mudah</p>
+
+		<div class="video-wrapper">
+		  <div class="video-container">
+			<iframe
+			  srcdoc="
+				<style>
+				  * { padding: 0; margin: 0; overflow: hidden }
+				  html, body { height: 100% }
+				  img {
+					position: absolute;
+					top: 0; left: 0;
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+				  }
+				  svg {
+					position: absolute;
+					top: 50%; left: 50%;
+					width: 48px; height: 48px;
+					transform: translate(-50%, -50%);
+					filter: drop-shadow(1px 1px 10px hsl(206.5, 70.7%, 8%));
+					transition: all 250ms ease-in-out;
+					z-index: 10;
+				  }
+				  body:hover svg {
+					filter: drop-shadow(1px 1px 10px hsl(206.5, 0%, 10%));
+					transform: translate(-50%, -50%) scale(1.2);
+				  }
+				</style>
+				<a href='https://www.youtube.com/embed/oOuW-_PKyO0?autoplay=1'>
+				  <img src='https://img.youtube.com/vi/oOuW-_PKyO0/hqdefault.jpg' alt='Video Thumbnail'>
+				  <svg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 24 24' fill='none' stroke='#ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-play-circle'>
+					<circle cx='12' cy='12' r='10'></circle>
+					<polygon points='10 8 16 12 10 16 10 8'></polygon>
+				  </svg>
+				</a>
+			  "
+			  src="https://www.youtube.com/embed/oOuW-_PKyO0"
+			  frameborder="0"
+			  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+			  allowfullscreen
+			  loading="lazy">
+			</iframe>
+		  </div>
+		</div>
+	  </div>
+	</section>
+
+    <!-- Testimonials Section -->
+    <section class="section testimonials">
+        <div class="container">
+            <h2 class="section-title">Testimoni Pengguna</h2>
+            <p class="section-subtitle">Apa kata mereka tentang Zaynayan Store</p>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">Semenjak menggunakan Zaynayan Store hidupku selalu terang karena bayar tagihan listrik sangat mudah disini.</p>
+                    <div class="testimonial-divider"></div>
+                    <p class="testimonial-author">Andika Pratama - From Playstore</p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">Aplikasinya terbukti amanah cocok buat usaha konter karena harganya yang murah cocok untuk dijual kembali.</p>
+                    <div class="testimonial-divider"></div>
+                    <p class="testimonial-author">Anita Kusuma - From Playstore</p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">Zaynayan Store merupakan aplikasi yang transparan, apalagi harganya terjangkau pasti lebih cuan.</p>
+                    <div class="testimonial-divider"></div>
+                    <p class="testimonial-author">Bima Sakti - From Playstore</p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">Ayo gunakan aplikasi ini. Aplikasi yang sangat membantu dalam kebutuhan sehari-hari. Pulsa, listrik, diamond game semua bisa.</p>
+                    <div class="testimonial-divider"></div>
+                    <p class="testimonial-author">Dewi Kumala - From App Store</p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">Menggunakan Aplikasi Zaynayan Store yg sy rasakan luar biasa, memudahkan segala transaksi dan biayanya sangat terjangkau.</p>
+                    <div class="testimonial-divider"></div>
+                    <p class="testimonial-author">Dian Tara Mulia - From App Store</p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">Zaynayan Store memberikan kemudahan dalam setiap transaksi. Dan harga yg berbeda dengan yg lain. Pokonya Zaynayan Store is the best.</p>
+                    <div class="testimonial-divider"></div>
+                    <p class="testimonial-author">Himbara Tamaka - From App Store</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Stats Section -->
+    <section class="section stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <i class="fas fa-download stat-icon"></i>
+                    <div class="stat-number" data-count="1000">0</div>
+                    <div class="stat-label">Total Download</div>
+                </div>
+                
+                <div class="stat-item">
+                    <i class="fas fa-users stat-icon"></i>
+                    <div class="stat-number" data-count="300">0</div>
+                    <div class="stat-label">Pengguna Aktif</div>
+                </div>
+                
+                <div class="stat-item">
+                    <i class="fas fa-star stat-icon"></i>
+                    <div class="stat-number" data-count="500">0</div>
+                    <div class="stat-label">Review Positif</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="section cta" id="download">
+        <div class="container">
+            <h2>Mulai Gunakan Zaynayan Store Sekarang!</h2>
+            <p>Dapatkan kemudahan bertransaksi dan keuntungan lebih dengan aplikasi Zaynayan Store</p>
+            
+            <div class="cta-btns">
+                <a href="https://linktr.ee/zaynayanstore" class="btn btn-primary">
+                    <i class="fas fa-download"></i> Download Sekarang!
+                </a>
+            </div>
+            
+            <img src="images/web+2.gif" alt="Download Zaynayan Store" class="cta-image" style="margin-top: 40px;">
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h5>Tentang Kami</h5>
+                    <p>PT. Zaynayan Digital Solutions adalah perusahaan teknologi yang menyediakan Platform Digital yang menjual pulsa, paket data, token PLN, voucher game, dan produk lainnya.</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h5>Kontak Kami</h5>
+                    <ul class="footer-contact">
+                        <li>
+                            <i class="fab fa-whatsapp"></i>
+                            <a href="https://api.whatsapp.com/send?phone=6285389635236">+62 853 8963 5236</a>
+                        </li>
+                        <li>
+                            <i class="fab fa-telegram"></i>
+                            <a href="https://t.me/zaynayanstore">@zaynayanstore</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:cs@zaynayanstore.biz.id">cs@zaynayanstore.biz.id</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <a href="https://maps.app.goo.gl/rzxijHHGCNFFn6H9A">Jl. Raya Transmigrasi Dusun V, Sukadamai Tanah Bumbu Kalimantan Selatan 72211</a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div id="legal" class="footer-col">
+                    <h5>Legal</h5>
+                    <ul class="footer-links">
+                        <li><a href="page/privacy-policy.html" target="_blank" rel="noopener noreferrer">Kebijakan Privasi</a></li>
+                        <li><a href="page/terms-conditions.html" target="_blank" rel="noopener noreferrer">Syarat & Ketentuan</a></li>
+                        <li><a href="page/service-policy.html" target="_blank" rel="noopener noreferrer">Kebijakan Layanan</a></li>
+                        <li><a href="page/refund-policy.html" target="_blank" rel="noopener noreferrer">Pengembalian Dana</a></li>
+                        <li><a href="page/disclaimer.html" target="_blank" rel="noopener noreferrer">Penafian</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h5>Ikuti Kami</h5>
+                    <div class="social-links">
+                        <a href="https://chat.whatsapp.com/HQKjq0otRVr9BM0fDHV9Gq" target="_blank" class="social-link">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://t.me/zaynayanstore" target="_blank" class="social-link">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="https://www.instagram.com/zaynayanstore" target="_blank" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=61576301620497" target="_blank" class="social-link">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@zaynayanstore" target="_blank" class="social-link">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@zaynayanstores" target="_blank" class="social-link">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+		<div class="footer-bottom">
+			<div class="container">
+				<p class="copyright">
+					© <span id="year-range"></span> 
+					<a href="/">PT. Zaynayan Digital Solutions</a> 
+					<span class="dash"> - </span>
+					<span class="line-break"><br></span>
+					All rights reserved
+				</p>
+			</div>
+		</div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+
+    <!-- JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/CSSRulePlugin.min.js"></script>
+	<script src="js/main.js?v=1" defer></script>
+
+</body>
+</html>
