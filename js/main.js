@@ -1,5 +1,7 @@
 /* ============================================================
    ZAYNAYAN STORE - MAIN SCRIPT
+   Logika per halaman: homepage (scroll spy), halaman legal
+   (highlight URL), postingan (placeholder).
    ============================================================ */
 
 (function() {
@@ -57,15 +59,13 @@
       const percent = scrollHeight > 0 ? scrollTop / scrollHeight : 0;
       const width = percent * window.innerWidth;
       bar.style.width = width + 'px';
-      const transitionWidth = 50;
-      bar.style.background = `linear-gradient(to right, #10B981 ${width - transitionWidth}px, orange ${width}px)`;
+      const tw = 50;
+      bar.style.background = `linear-gradient(to right, #10B981 ${width - tw}px, orange ${width}px)`;
       return width;
     }
 
     function createParticles(x) {
-      for (let i = 0; i < 4; i++) {
-        particles.push(new Particle(x, 5));
-      }
+      for (let i = 0; i < 4; i++) particles.push(new Particle(x, 5));
     }
 
     function animateParticles() {
@@ -86,7 +86,8 @@
     loop();
   }
 
-  /* ========== 2. MOBILE MENU ========== */
+  /* ========== 2. MOBILE MENU TOGGLE ========== */
+  /* Mengikuti CSS asli: menu muncul dari atas via max-height */
   function initMobileMenu() {
     const btn = document.getElementById('mobileMenuBtn');
     const menu = document.getElementById('navbarMenu');
@@ -99,8 +100,8 @@
         : '<i class="fas fa-bars"></i>';
     });
 
-    // Tutup menu saat link diklik (kecuali toggle dropdown)
-    menu.querySelectorAll('a.nav-link, a.dropdown-item, a.nav-btn').forEach(link => {
+    // Tutup menu saat nav-link diklik (kecuali dropdown Legal toggle)
+    menu.querySelectorAll('.nav-link:not(#legalToggle), .dropdown-item, .nav-btn').forEach(link => {
       link.addEventListener('click', () => {
         if (window.innerWidth <= 768) {
           menu.classList.remove('active');
@@ -110,32 +111,28 @@
     });
   }
 
-  /* ========== 3. DROPDOWN LEGAL (MOBILE) ========== */
-  function initDropdownMobile() {
+  /* ========== 3. DROPDOWN LEGAL ========== */
+  /* Di desktop: hover (CSS). Di mobile: hidden (CSS asli). */
+  /* Tapi di homepage mobile, #legal mengarah ke footer. */
+  function initDropdown() {
     const toggle = document.getElementById('legalToggle');
     const dropdown = document.getElementById('legalDropdown');
     if (!toggle || !dropdown) return;
 
-    toggle.addEventListener('click', function(e) {
-      if (window.innerWidth <= 768) {
-        e.preventDefault();
-        dropdown.classList.toggle('open');
-      }
-    });
+    // Di mobile, klik toggle Legal di homepage → biarkan href='#legal' bekerja (scroll ke footer)
+    // Tidak perlu preventDefault. User akan scroll ke section #legal.
+    // Di mobile, dropdown tidak muncul (CSS asli: display:none !important).
+    // Jadi tidak ada logika khusus untuk mobile.
 
-    document.addEventListener('click', function(e) {
-      if (!dropdown.contains(e.target)) {
-        dropdown.classList.remove('open');
-      }
-    });
+    // Di desktop, dropdown muncul saat hover (CSS).
+    // Tidak perlu JS.
   }
 
   /* ========== 4. SCROLL SPY (HOMEPAGE) ========== */
+  /* Menu aktif berubah sesuai section yang di-scroll */
   function initScrollSpy() {
-    // Hanya jalan di homepage
     if (!document.body.classList.contains('landing')) return;
 
-    // Cek apakah ini homepage (bukan halaman legal)
     const path = window.location.pathname;
     const isHomepage = path === '/' || path === '' || path.indexOf('/index') === 0;
     if (!isHomepage) return;
@@ -144,25 +141,21 @@
     const navLinks = document.querySelectorAll('.nav-link[data-route]');
     const navHeight = document.querySelector('.navbar')?.offsetHeight || 70;
 
-    console.log('[ScrollSpy] Sections:', sections.length, 'Links:', navLinks.length);
+    console.log('[ScrollSpy] Homepage. Sections:', sections.length, 'Links:', navLinks.length);
 
     let current = 'home';
 
     function updateActive() {
-      let found = false;
-
       sections.forEach(section => {
         const top = section.offsetTop - navHeight - 20;
         const height = section.offsetHeight;
         const id = section.getAttribute('id');
-
         if (window.scrollY >= top && window.scrollY < top + height) {
           current = id;
-          found = true;
         }
       });
 
-      // Kalau di paling bawah, aktifkan section terakhir
+      // Di paling bawah: aktifkan section terakhir
       if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 2) {
         if (sections.length > 0) {
           current = sections[sections.length - 1].getAttribute('id');
@@ -182,9 +175,9 @@
     updateActive();
   }
 
-  /* ========== 5. HIGHLIGHT HALAMAN LEGAL AKTIF ========== */
+  /* ========== 5. MENU AKTIF DI HALAMAN LEGAL ========== */
+  /* Highlight menu yang cocok dengan URL halaman */
   function initLegalActive() {
-    // Hanya jalan di halaman legal
     if (!document.querySelector('.legal-page-wrapper')) return;
 
     const path = window.location.pathname.toLowerCase();
@@ -201,14 +194,14 @@
     });
   }
 
-  /* ========== 6. SMOOTH SCROLL (HOMEPAGE ANCHOR) ========== */
+  /* ========== 6. SMOOTH SCROLL (anchor dalam halaman) ========== */
+  /* Hanya preventDefault kalau target ada di halaman ini */
   function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         const href = this.getAttribute('href');
         if (href === '#') return;
 
-        // Hanya preventDefault kalau anchor ada di halaman ini
         const target = document.querySelector(href);
         if (!target) return;
 
@@ -221,11 +214,10 @@
     });
   }
 
-  /* ========== 7. STICKY NAVBAR ON SCROLL ========== */
+  /* ========== 7. STICKY NAVBAR ========== */
   function initStickyNavbar() {
     const navbar = document.querySelector('.navbar');
     if (!navbar) return;
-
     window.addEventListener('scroll', () => {
       navbar.classList.toggle('scrolled', window.scrollY > 50);
     }, { passive: true });
@@ -235,17 +227,12 @@
   function initBackToTop() {
     const btn = document.getElementById('backToTop');
     if (!btn) return;
-
     let timeout = null;
-
     window.addEventListener('scroll', () => {
       btn.classList.toggle('active', window.scrollY > window.innerHeight * 0.1);
       clearTimeout(timeout);
-      timeout = setTimeout(() => {
-        btn.classList.remove('active');
-      }, 1000);
+      timeout = setTimeout(() => btn.classList.remove('active'), 1000);
     }, { passive: true });
-
     btn.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
@@ -255,17 +242,16 @@
   function initCounters() {
     const counters = document.querySelectorAll('.stat-number');
     if (counters.length === 0) return;
-
     const speed = 200;
 
-    function animateCounters() {
+    function animate() {
       counters.forEach(counter => {
         const target = +counter.getAttribute('data-count');
         const count = +counter.innerText;
-        const increment = target / speed;
+        const inc = target / speed;
         if (count < target) {
-          counter.innerText = Math.ceil(count + increment);
-          setTimeout(animateCounters, 1);
+          counter.innerText = Math.ceil(count + inc);
+          setTimeout(animate, 1);
         } else {
           counter.innerText = target;
         }
@@ -277,11 +263,10 @@
 
     const observer = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
-        animateCounters();
+        animate();
         observer.unobserve(statsSection);
       }
     }, { threshold: 0.5 });
-
     observer.observe(statsSection);
   }
 
@@ -305,9 +290,9 @@
           1024: { slidesPerView: 5 }
         }
       });
-      const swiperEl = document.querySelector('.swiper-container');
-      swiperEl.addEventListener('mouseenter', () => swiper.autoplay.stop());
-      swiperEl.addEventListener('mouseleave', () => swiper.autoplay.start());
+      const el = document.querySelector('.swiper-container');
+      el.addEventListener('mouseenter', () => swiper.autoplay.stop());
+      el.addEventListener('mouseleave', () => swiper.autoplay.start());
     };
     document.head.appendChild(swiperScript);
 
@@ -321,17 +306,18 @@
   function initYearRange() {
     const el = document.getElementById('year-range');
     if (!el) return;
-    const startYear = 2025;
-    const currentYear = new Date().getFullYear();
-    el.textContent = startYear === currentYear ? startYear : startYear + '–' + currentYear;
+    const start = 2025;
+    const current = new Date().getFullYear();
+    el.textContent = start === current ? start : start + '–' + current;
   }
 
-  /* ========== INIT ALL ========== */
+  /* ========== INIT ========== */
   function init() {
     console.log('[Main] DOM Ready. Path:', window.location.pathname);
+
     initScrollProgress();
     initMobileMenu();
-    initDropdownMobile();
+    initDropdown();
     initScrollSpy();
     initLegalActive();
     initSmoothScroll();
