@@ -355,6 +355,152 @@
       });
   }
 
+	/* ========== 13. PANDUAN ARCHIVE PAGE ========== */
+	function initPanduanArchive() {
+	  const archive = document.getElementById('panduan-archive');
+	  if (!archive) return;
+
+	  // Hanya jalan di /p/panduan.html
+	  const path = window.location.pathname;
+	  if (path.indexOf('/p/panduan.html') === -1) return;
+
+	  const filterBtns = document.querySelectorAll('.filter-btn');
+	  const pagination = document.getElementById('panduan-pagination');
+
+	  let allPosts = [];
+	  let currentFilter = 'all';
+	  let currentPage = 1;
+	  const postsPerPage = 9;
+
+	  // Fetch semua post dari feed
+	  function fetchPosts() {
+		// Ambil maksimal 150 post (cukup untuk panduan)
+		const feedUrl = '/feeds/posts/default?alt=json&max-results=150';
+
+		fetch(feedUrl)
+		  .then(res => res.json())
+		  .then(data => {
+			const entries = data.feed.entry || [];
+			allPosts = entries.map(entry => {
+			  const title = entry.title.$t;
+			  const link = entry.link.find(l => l.rel === 'alternate').href;
+			  const labels = (entry.category || []).map(c => c.term);
+			  const content = entry.content ? entry.content.$t : (entry.summary ? entry.summary.$t : '');
+			  const excerpt = content.replace(/<[^>]+>/g, '').substring(0, 150) + '...';
+			  const thumb = entry.media$thumbnail ? entry.media$thumbnail.url.replace('/s72-c/', '/s400/') : null;
+
+			  // Fallback: extract thumb from content
+			  let finalThumb = thumb;
+			  if (!finalThumb && entry.content && entry.content.$t) {
+				const match = entry.content.$t.match(/<img[^>]+src=["']([^"']+)["']/);
+				if (match) {
+				  finalThumb = match[1].replace('/s72-c/', '/s400/').replace('/s320/', '/s400/');
+				}
+			  }
+
+			  return {
+				title: title,
+				link: link,
+				labels: labels,
+				excerpt: excerpt,
+				thumb: finalThumb
+			  };
+			});
+
+			renderPosts();
+		  })
+		  .catch(err => {
+			console.error('[Panduan Archive] Error:', err);
+			archive.innerHTML = '<div class="panduan-loading">Gagal memuat panduan.</div>';
+		  });
+	  }
+
+	  // Render posts sesuai filter & pagination
+	  function renderPosts() {
+		// Filter
+		let filtered = allPosts;
+		if (currentFilter !== 'all') {
+		  filtered = allPosts.filter(post => post.labels.includes(currentFilter));
+		}
+
+		// Pagination
+		const totalPages = Math.ceil(filtered.length / postsPerPage);
+		const start = (currentPage - 1) * postsPerPage;
+		const end = start + postsPerPage;
+		const pagePosts = filtered.slice(start, end);
+
+		// Render cards
+		if (pagePosts.length === 0) {
+		  archive.innerHTML = '<div class="panduan-loading">Belum ada panduan.</div>';
+		  pagination.innerHTML = '';
+		  return;
+		}
+
+		archive.innerHTML = pagePosts.map(post => {
+		  const labelsHtml = post.labels.map(label =>
+			`<a class="panduan-label" href="/search/label/${encodeURIComponent(label)}">${label}</a>`
+		  ).join('');
+
+		  const thumbHtml = post.thumb
+			? `<img src="${post.thumb}" alt="${post.title}" onerror="this.parentElement.innerHTML='<div class=\\'panduan-thumb-placeholder\\'><i class=\\'fas fa-book-open\\'></i></div>'"/>`
+			: `<div class="panduan-thumb-placeholder"><i class="fas fa-book-open"></i></div>`;
+
+		  return `
+			<article class="panduan-card">
+			  <a class="panduan-thumb" href="${post.link}">${thumbHtml}</a>
+			  <div class="panduan-body">
+				<div class="panduan-labels">${labelsHtml}</div>
+				<h3 class="panduan-title"><a href="${post.link}">${post.title}</a></h3>
+				<p class="panduan-excerpt">${post.excerpt}</p>
+				<a class="panduan-read" href="${post.link}">Baca Selengkapnya →</a>
+			  </div>
+			</article>
+		  `;
+		}).join('');
+
+		// Render pagination
+		if (totalPages <= 1) {
+		  pagination.innerHTML = '';
+		  return;
+		}
+
+		let paginationHTML = '';
+		if (currentPage > 1) {
+		  paginationHTML += `<button data-page="${currentPage - 1}">← Sebelumnya</button>`;
+		}
+		for (let i = 1; i <= totalPages; i++) {
+		  paginationHTML += `<button data-page="${i}" class="${i === currentPage ? 'active' : ''}">${i}</button>`;
+		}
+		if (currentPage < totalPages) {
+		  paginationHTML += `<button data-page="${currentPage + 1}">Selanjutnya →</button>`;
+		}
+		pagination.innerHTML = paginationHTML;
+
+		// Attach event listener ke tombol pagination
+		pagination.querySelectorAll('button').forEach(btn => {
+		  btn.addEventListener('click', function() {
+			currentPage = parseInt(this.dataset.page);
+			renderPosts();
+			window.scrollTo({ top: 0, behavior: 'smooth' });
+		  });
+		});
+	  }
+
+	  // Filter button click
+	  filterBtns.forEach(btn => {
+		btn.addEventListener('click', function() {
+		  filterBtns.forEach(b => b.classList.remove('active'));
+		  this.classList.add('active');
+		  currentFilter = this.dataset.filter;
+		  currentPage = 1;
+		  renderPosts();
+		});
+	  });
+
+	  // Initial fetch
+	  fetchPosts();
+	}
+
   /* ========== INIT ========== */
   function init() {
     console.log('[Main] DOM Ready. Path:', window.location.pathname);
@@ -371,6 +517,7 @@
     initSwiper();
     initYearRange();
     initPanduanFeed();
+	initPanduanArchive();
   }
 
   if (document.readyState === 'loading') {
