@@ -1,7 +1,5 @@
 /* ============================================================
    ZAYNAYAN STORE - MAIN SCRIPT
-   Logika per halaman: homepage (scroll spy), halaman legal
-   (highlight URL), postingan (placeholder).
    ============================================================ */
 
 (function() {
@@ -87,7 +85,6 @@
   }
 
   /* ========== 2. MOBILE MENU TOGGLE ========== */
-  /* Mengikuti CSS asli: menu muncul dari atas via max-height */
   function initMobileMenu() {
     const btn = document.getElementById('mobileMenuBtn');
     const menu = document.getElementById('navbarMenu');
@@ -100,8 +97,7 @@
         : '<i class="fas fa-bars"></i>';
     });
 
-    // Tutup menu saat nav-link diklik (kecuali dropdown Legal toggle)
-    menu.querySelectorAll('.nav-link:not(#legalToggle), .dropdown-item, .nav-btn').forEach(link => {
+    menu.querySelectorAll('.nav-link:not(#legalToggle):not(#panduanToggle), .dropdown-item, .nav-btn').forEach(link => {
       link.addEventListener('click', () => {
         if (window.innerWidth <= 768) {
           menu.classList.remove('active');
@@ -111,25 +107,44 @@
     });
   }
 
-  /* ========== 3. DROPDOWN LEGAL ========== */
-  /* Di desktop: hover (CSS). Di mobile: hidden (CSS asli). */
-  /* Tapi di homepage mobile, #legal mengarah ke footer. */
+  /* ========== 3. DROPDOWN (LEGAL & PANDUAN) ========== */
   function initDropdown() {
-    const toggle = document.getElementById('legalToggle');
-    const dropdown = document.getElementById('legalDropdown');
-    if (!toggle || !dropdown) return;
+    // Legal dropdown
+    const legalToggle = document.getElementById('legalToggle');
+    const legalDropdown = document.getElementById('legalDropdown');
+    if (legalToggle && legalDropdown) {
+      legalToggle.addEventListener('click', function(e) {
+        if (window.innerWidth <= 768) {
+          e.preventDefault();
+          legalDropdown.classList.toggle('open');
+        }
+      });
+      document.addEventListener('click', function(e) {
+        if (!legalDropdown.contains(e.target)) {
+          legalDropdown.classList.remove('open');
+        }
+      });
+    }
 
-    // Di mobile, klik toggle Legal di homepage → biarkan href='#legal' bekerja (scroll ke footer)
-    // Tidak perlu preventDefault. User akan scroll ke section #legal.
-    // Di mobile, dropdown tidak muncul (CSS asli: display:none !important).
-    // Jadi tidak ada logika khusus untuk mobile.
-
-    // Di desktop, dropdown muncul saat hover (CSS).
-    // Tidak perlu JS.
+    // Panduan dropdown
+    const panduanToggle = document.getElementById('panduanToggle');
+    const panduanDropdown = document.getElementById('panduanDropdown');
+    if (panduanToggle && panduanDropdown) {
+      panduanToggle.addEventListener('click', function(e) {
+        if (window.innerWidth <= 768) {
+          e.preventDefault();
+          panduanDropdown.classList.toggle('open');
+        }
+      });
+      document.addEventListener('click', function(e) {
+        if (!panduanDropdown.contains(e.target)) {
+          panduanDropdown.classList.remove('open');
+        }
+      });
+    }
   }
 
   /* ========== 4. SCROLL SPY (HOMEPAGE) ========== */
-  /* Menu aktif berubah sesuai section yang di-scroll */
   function initScrollSpy() {
     if (!document.body.classList.contains('landing')) return;
 
@@ -140,8 +155,6 @@
     const sections = document.querySelectorAll('section[id], header[id]');
     const navLinks = document.querySelectorAll('.nav-link[data-route]');
     const navHeight = document.querySelector('.navbar')?.offsetHeight || 70;
-
-    console.log('[ScrollSpy] Homepage. Sections:', sections.length, 'Links:', navLinks.length);
 
     let current = 'home';
 
@@ -155,7 +168,6 @@
         }
       });
 
-      // Di paling bawah: aktifkan section terakhir
       if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 2) {
         if (sections.length > 0) {
           current = sections[sections.length - 1].getAttribute('id');
@@ -176,14 +188,11 @@
   }
 
   /* ========== 5. MENU AKTIF DI HALAMAN LEGAL ========== */
-  /* Highlight menu yang cocok dengan URL halaman */
   function initLegalActive() {
     if (!document.querySelector('.legal-page-wrapper')) return;
 
     const path = window.location.pathname.toLowerCase();
     const navLinks = document.querySelectorAll('.nav-link[data-route]');
-
-    console.log('[LegalActive] Path:', path, 'Links:', navLinks.length);
 
     navLinks.forEach(link => {
       link.classList.remove('active');
@@ -194,17 +203,14 @@
     });
   }
 
-  /* ========== 6. SMOOTH SCROLL (anchor dalam halaman) ========== */
-  /* Hanya preventDefault kalau target ada di halaman ini */
+  /* ========== 6. SMOOTH SCROLL ========== */
   function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         const href = this.getAttribute('href');
         if (href === '#') return;
-
         const target = document.querySelector(href);
         if (!target) return;
-
         e.preventDefault();
         window.scrollTo({
           top: target.offsetTop - 70,
@@ -311,6 +317,61 @@
     el.textContent = start === current ? start : start + '–' + current;
   }
 
+  /* ========== 12. PANDUAN FEED (HOMEPAGE) ========== */
+  function initPanduanFeed() {
+    const grid = document.getElementById('panduan-grid');
+    if (!grid) return;
+
+    const path = window.location.pathname;
+    const isHomepage = path === '/' || path === '' || path.indexOf('/index') === 0;
+    if (!isHomepage) return;
+
+    const feedUrl = '/feeds/posts/default?alt=json&max-results=3';
+
+    fetch(feedUrl)
+      .then(res => res.json())
+      .then(data => {
+        const entries = data.feed.entry || [];
+        if (entries.length === 0) {
+          grid.innerHTML = '<div class="panduan-loading">Belum ada panduan.</div>';
+          return;
+        }
+
+        grid.innerHTML = entries.map(entry => {
+          const title = entry.title.$t;
+          const link = entry.link.find(l => l.rel === 'alternate').href;
+          const labels = (entry.category || []).map(c => c.term);
+          const content = entry.content ? entry.content.$t : (entry.summary ? entry.summary.$t : '');
+          const excerpt = content.replace(/<[^>]+>/g, '').substring(0, 120) + '...';
+          const thumb = entry.media$thumbnail ? entry.media$thumbnail.url.replace('/s72-c/', '/s400/') : null;
+
+          const labelsHtml = labels.map(label =>
+            `<a class="panduan-label" href="/search/label/${encodeURIComponent(label)}">${label}</a>`
+          ).join('');
+
+          const thumbHtml = thumb
+            ? `<img src="${thumb}" alt="${title}"/>`
+            : `<div class="panduan-thumb-placeholder"><i class="fas fa-book"></i></div>`;
+
+          return `
+            <article class="panduan-card">
+              <a class="panduan-thumb" href="${link}">${thumbHtml}</a>
+              <div class="panduan-body">
+                <div class="panduan-labels">${labelsHtml}</div>
+                <h3 class="panduan-title"><a href="${link}">${title}</a></h3>
+                <p class="panduan-excerpt">${excerpt}</p>
+                <a class="panduan-read" href="${link}">Baca Selengkapnya →</a>
+              </div>
+            </article>
+          `;
+        }).join('');
+      })
+      .catch(err => {
+        console.error('[Panduan Feed] Error:', err);
+        grid.innerHTML = '<div class="panduan-loading">Gagal memuat panduan.</div>';
+      });
+  }
+
   /* ========== INIT ========== */
   function init() {
     console.log('[Main] DOM Ready. Path:', window.location.pathname);
@@ -326,6 +387,7 @@
     initCounters();
     initSwiper();
     initYearRange();
+    initPanduanFeed();
   }
 
   if (document.readyState === 'loading') {
