@@ -343,7 +343,7 @@
                 <div class="panduan-labels">${labelsHtml}</div>
                 <h3 class="panduan-title"><a href="${link}">${title}</a></h3>
                 <p class="panduan-excerpt">${excerpt}</p>
-                <a class="panduan-read" href="${link}">Baca Selengkapnya →</a>
+                <a class="panduan-read" href="${link}">Baca Selengkapnya</a>
               </div>
             </article>
           `;
@@ -452,7 +452,7 @@
 				<div class="panduan-labels">${labelsHtml}</div>
 				<h3 class="panduan-title"><a href="${post.link}">${post.title}</a></h3>
 				<p class="panduan-excerpt">${post.excerpt}</p>
-				<a class="panduan-read" href="${post.link}">Baca Selengkapnya →</a>
+				<a class="panduan-read" href="${post.link}">Baca Selengkapnya</a>
 			  </div>
 			</article>
 		  `;
@@ -466,13 +466,13 @@
 
 		let paginationHTML = '';
 		if (currentPage > 1) {
-		  paginationHTML += `<button data-page="${currentPage - 1}">← Sebelumnya</button>`;
+		  paginationHTML += `<button data-page="${currentPage - 1}">Sebelumnya</button>`;
 		}
 		for (let i = 1; i <= totalPages; i++) {
 		  paginationHTML += `<button data-page="${i}" class="${i === currentPage ? 'active' : ''}">${i}</button>`;
 		}
 		if (currentPage < totalPages) {
-		  paginationHTML += `<button data-page="${currentPage + 1}">Selanjutnya →</button>`;
+		  paginationHTML += `<button data-page="${currentPage + 1}">Selanjutnya</button>`;
 		}
 		pagination.innerHTML = paginationHTML;
 
@@ -501,6 +501,47 @@
 	  fetchPosts();
 	}
 
+	/* ========== 14. POST NAV TITLE ========== */
+	function initPostNavTitle() {
+	  const navLinks = document.querySelectorAll('.post-nav a[data-url]');
+	  if (navLinks.length === 0) return;
+
+	  navLinks.forEach(link => {
+		const url = link.getAttribute('data-url');
+		if (!url) return;
+
+		fetch(url)
+		  .then(res => res.text())
+		  .then(html => {
+			const parser = new DOMParser();
+			const doc = parser.parseFromString(html, 'text/html');
+			
+			const title = 
+			  doc.querySelector('.post-title')?.textContent.trim() ||
+			  doc.querySelector('h1.entry-title')?.textContent.trim() ||
+			  doc.querySelector('meta[property="og:title"]')?.getAttribute('content') ||
+			  doc.title.split(' - ')[0];
+			
+			if (title && title.length > 0) {
+			  const placeholder = link.querySelector('.nav-title-placeholder');
+			  if (placeholder) {
+				placeholder.textContent = title;
+				placeholder.classList.remove('nav-title-placeholder');
+				placeholder.classList.add('nav-title');
+			  }
+			}
+		  })
+		  .catch(err => {
+			console.warn('[PostNav] Gagal fetch title:', url, err);
+			const placeholder = link.querySelector('.nav-title-placeholder');
+			if (placeholder) {
+			  placeholder.textContent = '';
+			  placeholder.style.display = 'none';
+			}
+		  });
+	  });
+	}
+
   /* ========== INIT ========== */
   function init() {
     console.log('[Main] DOM Ready. Path:', window.location.pathname);
@@ -518,6 +559,7 @@
     initYearRange();
     initPanduanFeed();
 	initPanduanArchive();
+	initPostNavTitle();
   }
 
   if (document.readyState === 'loading') {
