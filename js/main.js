@@ -125,23 +125,6 @@
         }
       });
     }
-
-    // Panduan dropdown
-    const panduanToggle = document.getElementById('panduanToggle');
-    const panduanDropdown = document.getElementById('panduanDropdown');
-    if (panduanToggle && panduanDropdown) {
-      panduanToggle.addEventListener('click', function(e) {
-        if (window.innerWidth <= 768) {
-          e.preventDefault();
-          panduanDropdown.classList.toggle('open');
-        }
-      });
-      document.addEventListener('click', function(e) {
-        if (!panduanDropdown.contains(e.target)) {
-          panduanDropdown.classList.remove('open');
-        }
-      });
-    }
   }
 
   /* ========== 4. SCROLL SPY (HOMEPAGE) ========== */
