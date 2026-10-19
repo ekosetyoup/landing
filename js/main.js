@@ -309,7 +309,7 @@
     const isHomepage = path === '/' || path === '' || path.indexOf('/index') === 0;
     if (!isHomepage) return;
 
-    const feedUrl = '/feeds/posts/default?alt=json&max-results=3';
+    const feedUrl = '/feeds/posts/default?alt=json&max-results=5';
 
     fetch(feedUrl)
       .then(res => res.json())
@@ -419,8 +419,12 @@
 	  function renderPosts() {
 		// Filter
 		let filtered = allPosts;
-		if (currentFilter !== 'all') {
-		  filtered = allPosts.filter(post => post.labels.includes(currentFilter));
+			if (currentFilter !== 'all') {
+			  const normalizedFilter = currentFilter.toLowerCase().trim();
+			  filtered = allPosts.filter(post => 
+				post.labels.some(label => label.toLowerCase().trim() === normalizedFilter)
+			  );
+			}
 		}
 
 		// Pagination
@@ -542,6 +546,32 @@
 	  });
 	}
 
+	/* ========== 15. LABEL PAGINATION FIX ========== */
+	function initLabelPaginationFix() {
+	  const pagination = document.querySelector('.panduan-pagination');
+	  if (!pagination) return;
+
+	  const nextLink = pagination.querySelector('a[href*="start="]');
+	  if (!nextLink) return;
+
+	  const nextUrl = nextLink.getAttribute('href');
+
+	  fetch(nextUrl)
+		.then(res => res.text())
+		.then(html => {
+		  const parser = new DOMParser();
+		  const doc = parser.parseFromString(html, 'text/html');
+		  const nextPagePosts = doc.querySelectorAll('.panduan-card').length;
+
+		  if (nextPagePosts === 0) {
+			pagination.style.display = 'none';
+		  }
+		})
+		.catch(err => {
+		  console.warn('[LabelPagination] Gagal cek halaman berikutnya:', err);
+		});
+	}
+
   /* ========== INIT ========== */
   function init() {
     console.log('[Main] DOM Ready. Path:', window.location.pathname);
@@ -560,6 +590,7 @@
     initPanduanFeed();
 	initPanduanArchive();
 	initPostNavTitle();
+	initLabelPaginationFix();
   }
 
   if (document.readyState === 'loading') {
