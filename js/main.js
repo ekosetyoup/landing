@@ -425,7 +425,6 @@
 				post.labels.some(label => label.toLowerCase().trim() === normalizedFilter)
 			  );
 			}
-		}
 
 		// Pagination
 		const totalPages = Math.ceil(filtered.length / postsPerPage);
