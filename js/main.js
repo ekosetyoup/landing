@@ -571,6 +571,68 @@
 		});
 	}
 
+	/* ========== 16. COPY POST LINK ========== */
+	function initCopyLink() {
+	  const btn = document.getElementById('shareCopyBtn');
+	  if (!btn) return;
+
+	  btn.addEventListener('click', function() {
+		const url = window.location.href;
+		navigator.clipboard.writeText(url).then(() => {
+		  const originalBg = btn.style.background;
+		  btn.style.background = '#10B981';
+		  btn.innerHTML = '<i class="fas fa-check"></i>';
+		  setTimeout(() => {
+			btn.style.background = originalBg || '#6c757d';
+			btn.innerHTML = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>';
+		  }, 1500);
+		}).catch(err => {
+		  console.warn('[CopyLink] Gagal copy:', err);
+		});
+	  });
+	}
+
+	/* ========== 17. SHARE MOBILE MODAL ========== */
+	function initShareMobile() {
+	  const toggleBtn = document.getElementById('shareToggleMobile');
+	  const shareDiv = document.getElementById('postShareButtons');
+	  const closeBtn = document.getElementById('shareCloseMobile');
+	  const overlay = document.getElementById('shareOverlay');
+
+	  if (!toggleBtn || !shareDiv) return;
+
+	  function openModal() {
+		shareDiv.classList.add('active');
+		if (overlay) overlay.classList.add('active');
+		document.body.style.overflow = 'hidden';
+	  }
+
+	  function closeModal() {
+		shareDiv.classList.remove('active');
+		if (overlay) overlay.classList.remove('active');
+		document.body.style.overflow = '';
+	  }
+
+	  toggleBtn.addEventListener('click', openModal);
+	  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+	  if (overlay) overlay.addEventListener('click', closeModal);
+
+	  // Klik di luar modal (jaga-jaga)
+	  document.addEventListener('click', function(e) {
+		if (shareDiv.classList.contains('active') && 
+			!shareDiv.contains(e.target) && 
+			!toggleBtn.contains(e.target)) {
+		  closeModal();
+		}
+	  });
+
+	  document.addEventListener('keydown', function(e) {
+		if (e.key === 'Escape' && shareDiv.classList.contains('active')) {
+		  closeModal();
+		}
+	  });
+	}
+
   /* ========== INIT ========== */
   function init() {
     console.log('[Main] DOM Ready. Path:', window.location.pathname);
@@ -590,6 +652,8 @@
 	initPanduanArchive();
 	initPostNavTitle();
 	initLabelPaginationFix();
+	initCopyLink();
+	initShareMobile();
   }
 
   if (document.readyState === 'loading') {
