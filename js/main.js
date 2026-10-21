@@ -633,6 +633,157 @@
 	  });
 	}
 
+	/* ========== 18. RELATED POSTS ========== */
+	function initRelatedPosts() {
+	  const container = document.getElementById('relatedPosts');
+	  if (!container) return;
+
+	  // Ambil label dari post (dari breadcrumb atau post-meta)
+	  const labelLink = document.querySelector('.post-meta .post-labels a');
+	  if (!labelLink) {
+		container.style.display = 'none';
+		return;
+	  }
+
+	  const label = labelLink.textContent.trim();
+	  const currentUrl = window.location.href.split('?')[0]; // tanpa ?m=1
+
+	  // Tampilkan loading
+	  container.innerHTML = '<div class="related-posts-loading">Memuat artikel terkait...</div>';
+
+	  // Fetch feed berdasarkan label
+	  const feedUrl = '/feeds/posts/default/-/' + encodeURIComponent(label) + '?alt=json&max-results=6';
+
+	  fetch(feedUrl)
+		.then(res => res.json())
+		.then(data => {
+		  const entries = data.feed.entry || [];
+		  
+		  // Filter: exclude current post
+		  const related = entries.filter(entry => {
+			const link = entry.link.find(l => l.rel === 'alternate').href.split('?')[0];
+			return link !== currentUrl;
+		  }).slice(0, 3);
+
+		  if (related.length === 0) {
+			container.style.display = 'none';
+			return;
+		  }
+
+		  // Render
+		  let html = '<h3 class="related-posts-title"><i class="fas fa-book-open"></i> Artikel Terkait</h3>';
+		  html += '<div class="related-posts-grid">';
+
+		  related.forEach(entry => {
+			const title = entry.title.$t;
+			const link = entry.link.find(l => l.rel === 'alternate').href;
+			const thumb = entry.media$thumbnail ? entry.media$thumbnail.url.replace('/s72-c/', '/s400/') : null;
+			const date = new Date(entry.published.$t).toLocaleDateString('id-ID', {
+			  day: 'numeric', month: 'short', year: 'numeric'
+			});
+
+			const thumbHtml = thumb
+			  ? `<img src="${thumb}" alt="${title}" onerror="this.parentElement.innerHTML='<div class=\\'related-post-thumb-placeholder\\'><i class=\\'fas fa-book-open\\'></i></div>'"/>`
+			  : `<div class="related-post-thumb-placeholder"><i class="fas fa-book-open"></i></div>`;
+
+			html += `
+			  <a class="related-post-card" href="${link}">
+				<div class="related-post-thumb">${thumbHtml}</div>
+				<div class="related-post-body">
+				  <h4 class="related-post-card-title">${title}</h4>
+				  <span class="related-post-date">${date}</span>
+				</div>
+			  </a>
+			`;
+		  });
+
+		  html += '</div>';
+		  container.innerHTML = html;
+		})
+		.catch(err => {
+		  console.warn('[RelatedPosts] Gagal fetch:', err);
+		  container.style.display = 'none';
+		});
+	}
+
+	/* ========== 19. READING TIME ========== */
+	function initReadingTime() {
+	  const el = document.getElementById('postReadingTime');
+	  const body = document.querySelector('.post-body');
+	  
+	  if (!el || !body) return;
+
+	  // Ambil teks dari body post (tanpa HTML)
+	  const text = body.innerText || body.textContent || '';
+	  
+	  // Hitung jumlah kata (split by spasi)
+	  const words = text.trim().split(/\s+/).filter(w => w.length > 0).length;
+	  
+	  // Kecepatan baca rata-rata: 200 kata/menit
+	  const minutes = Math.max(1, Math.ceil(words / 200));
+	  
+	  // Tampilkan
+	  el.innerHTML = '<i class="fas fa-clock"></i> ' + minutes + ' menit baca';
+	}
+
+	/* ========== 20. SITEMAP ARTICLES ========== */
+	function initSitemap() {
+	  const container = document.getElementById('sitemap-articles');
+	  if (!container) return;
+
+	  // Fetch semua post (maks 150)
+	  const feedUrl = '/feeds/posts/default?alt=json&max-results=150';
+
+	  fetch(feedUrl)
+		.then(res => res.json())
+		.then(data => {
+		  const entries = data.feed.entry || [];
+		  if (entries.length === 0) {
+			container.innerHTML = '<p style="text-align: center; color: #888;">Belum ada artikel.</p>';
+			return;
+		  }
+
+		  // Kelompokkan per label
+		  const grouped = {};
+		  entries.forEach(entry => {
+			const title = entry.title.$t;
+			const link = entry.link.find(l => l.rel === 'alternate').href;
+			const labels = (entry.category || []).map(c => c.term);
+
+			if (labels.length === 0) {
+			  labels.push('Tanpa Label');
+			}
+
+			labels.forEach(label => {
+			  if (!grouped[label]) grouped[label] = [];
+			  grouped[label].push({ title, link });
+			});
+		  });
+
+		  // Sort label alphabetically
+		  const sortedLabels = Object.keys(grouped).sort();
+
+		  // Render
+		  let html = '<div class="sitemap-articles">';
+		  sortedLabels.forEach(label => {
+			html += '<div class="sitemap-article-group">';
+			html += '<h3 class="sitemap-article-title"><i class="fas fa-tag"></i> ' + label + ' <span class="sitemap-article-count">(' + grouped[label].length + ')</span></h3>';
+			html += '<ul>';
+			grouped[label].forEach(post => {
+			  html += '<li><a href="' + post.link + '">' + post.title + '</a></li>';
+			});
+			html += '</ul>';
+			html += '</div>';
+		  });
+		  html += '</div>';
+		  container.innerHTML = html;
+		})
+		.catch(err => {
+		  console.warn('[Sitemap] Gagal fetch:', err);
+		  container.innerHTML = '<p style="text-align: center; color: #888;">Gagal memuat artikel.</p>';
+		});
+	}
+
   /* ========== INIT ========== */
   function init() {
     console.log('[Main] DOM Ready. Path:', window.location.pathname);
@@ -654,6 +805,9 @@
 	initLabelPaginationFix();
 	initCopyLink();
 	initShareMobile();
+	initRelatedPosts();
+	initReadingTime();
+	initSitemap();
   }
 
   if (document.readyState === 'loading') {
