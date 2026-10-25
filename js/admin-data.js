@@ -27,10 +27,10 @@ window.ADMIN_DATA = {
     },
 
     // ═══════════════════════════════════════════════════════
-    // 2. LAYER 1 -
+    // 2. LAYER 1 - LEGAL
     // ═══════════════════════════════════════════════════════
     {
-      name: 'Hosting & Server',
+      name: 'Layer 1 - Legal',
       items: [
         { name: 'Qwords', url: 'https://www.qwords.com/', icon: 'fas fa-server' },
         { name: 'phpMyAdmin', url: 'http://168.110.213.0:18080/', icon: 'fas fa-database' },
@@ -41,10 +41,10 @@ window.ADMIN_DATA = {
     },
 
     // ═══════════════════════════════════════════════════════
-    // 3. LAYER 2 -
+    // 3. LAYER 2 - INFRASTRUKTUR
     // ═══════════════════════════════════════════════════════
     {
-      name: 'Domain & DNS',
+      name: 'Layer 2 - Infrastruktur',
       items: [
         { name: 'Domain Rumahweb', url: 'https://member.rumahweb.com/', icon: 'fas fa-globe' },
         { name: 'Domain IDCloudHost', url: 'https://idcloudhost.com/', icon: 'fas fa-globe' },
@@ -54,10 +54,10 @@ window.ADMIN_DATA = {
     },
 
     // ═══════════════════════════════════════════════════════
-    // 4. LAYER 3 -
+    // 4. LAYER 3 - OPERASIONAL
     // ═══════════════════════════════════════════════════════
     {
-      name: 'Website & CMS',
+      name: 'Layer 3 - Operasional',
       items: [
         { name: 'WordPress', url: 'https://panduan.zaynayan.my.id/wp-login.php', icon: 'fab fa-wordpress' },
         { name: 'Blogger', url: 'https://www.blogger.com/', icon: 'fab fa-blogger' },
@@ -67,10 +67,10 @@ window.ADMIN_DATA = {
     },
 
     // ═══════════════════════════════════════════════════════
-    // 5. LAYER 4 -
+    // 5. LAYER 4 - PAYMENT
     // ═══════════════════════════════════════════════════════
     {
-      name: 'Email & Komunikasi',
+      name: 'Layer 4 - Payment',
       items: [
         { name: 'Zoho Mail', url: 'https://www.zoho.com/id/mail/', icon: 'fas fa-envelope' },
         { name: 'Gmail', url: 'https://mail.google.com/', icon: 'fas fa-envelope-open-text' },
@@ -81,10 +81,10 @@ window.ADMIN_DATA = {
     },
 
     // ═══════════════════════════════════════════════════════
-    // 6. LAYER 5 -
+    // 6. LAYER 5 - SUPPLIER
     // ═══════════════════════════════════════════════════════
     {
-      name: 'Keuangan & Pembayaran',
+      name: 'Layer 5 - Supplier',
       items: [
         { name: 'Midtrans', url: 'https://dashboard.midtrans.com/', icon: 'fas fa-credit-card' },
         { name: 'Xendit', url: 'https://dashboard.xendit.co/', icon: 'fas fa-money-check' },
@@ -95,10 +95,10 @@ window.ADMIN_DATA = {
     },
 
     // ═══════════════════════════════════════════════════════
-    // 7. LAYER 6 -
+    // 7. LAYER 6 - DISTRIBUSI
     // ═══════════════════════════════════════════════════════
     {
-      name: 'Marketing & Media Sosial',
+      name: 'Layer 6 - Distribusi',
       items: [
         { name: 'Facebook Page', url: 'https://www.facebook.com/zaynayanstore', icon: 'fab fa-facebook' },
         { name: 'Instagram', url: 'https://www.instagram.com/zaynayanstore', icon: 'fab fa-instagram' },
@@ -110,10 +110,10 @@ window.ADMIN_DATA = {
     },
 
     // ═══════════════════════════════════════════════════════
-    // 8. LAYER 7 -
+    // 8. LAYER 7 - CS
     // ═══════════════════════════════════════════════════════
     {
-      name: 'Analytics & Monitoring',
+      name: 'Layer 7 - Customer Service',
       items: [
         { name: 'Google Analytics', url: 'https://analytics.google.com/', icon: 'fas fa-chart-line' },
         { name: 'Search Console', url: 'https://search.google.com/search-console', icon: 'fas fa-search' },
@@ -124,7 +124,7 @@ window.ADMIN_DATA = {
     },
 
     // ═══════════════════════════════════════════════════════
-    // 9. PENYIMPANAN & FILE
+    // 9. Checker
     // ═══════════════════════════════════════════════════════
     {
       name: 'Penyimpanan & File',
