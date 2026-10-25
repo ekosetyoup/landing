@@ -1,0 +1,301 @@
+/* ============================================================
+   ADMIN PORTAL - ZAYNAYAN STORE
+   ============================================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --primary-padding: 15px;
+    --primary: #10B981;
+    --secondary: #F59E0B;
+    --accent: #8B5CF6;
+    --light: #F9FAFB;
+    --light-gray: #E5E7EB;
+    --dark: #1F2937;
+    --gray: #6B7280;
+    --success: #84CC16;
+    --danger: #F43F5E;
+}
+
+.admin-portal-body {
+    background: linear-gradient(135deg, var(--dark), var(--accent), var(--dark));
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    color: var(--light);
+    min-height: 100vh;
+    padding: 10px;
+    overflow-x: hidden;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.admin-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px;
+    width: 100%;
+}
+
+.admin-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.admin-header h1 {
+    font-size: 2rem;
+    margin-bottom: 8px;
+    color: var(--light);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    word-wrap: break-word;
+}
+
+.admin-subtitle {
+    font-size: 0.95rem;
+    color: var(--light-gray);
+    max-width: 100%;
+    margin: 0 auto;
+    line-height: 1.5;
+    padding: 0 5px;
+}
+
+.search-box {
+    max-width: 100%;
+    margin: 20px auto;
+    position: relative;
+    width: 100%;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 50px;
+    border: none;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    color: var(--light);
+    font-size: 0.9rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.search-box input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.search-box input:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--primary);
+}
+
+.search-box i {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.apps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+    width: 100%;
+}
+
+.app-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 15px 10px;
+    text-align: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    min-height: 110px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.app-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+    border-color: var(--primary);
+}
+
+.app-icon {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    color: var(--light);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.app-card:hover .app-icon {
+    color: var(--primary);
+    transform: scale(1.1);
+}
+
+.app-name {
+    font-size: 0.8rem;
+    color: var(--light);
+    font-weight: 500;
+    margin-top: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    line-height: 1.2;
+    max-width: 100%;
+}
+
+.category {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--primary);
+    font-size: 1.2rem;
+    font-weight: 600;
+    width: 100%;
+    color: var(--light);
+    display: flex;
+    align-items: center;
+}
+
+.category::before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: var(--primary);
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.admin-footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 15px;
+    color: var(--light-gray);
+    font-size: 0.8rem;
+    width: 100%;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Media queries */
+@media (min-width: 480px) {
+    :root { --primary-padding: 20px; }
+    .admin-portal-body { padding: 15px; }
+    .admin-container { padding: 15px; }
+    .admin-header { padding: 20px; }
+    .admin-header h1 { font-size: 2.2rem; }
+    .admin-subtitle { font-size: 1rem; }
+    .apps-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 20px; }
+    .app-card { min-height: 120px; padding: 20px 15px; }
+    .app-icon { font-size: 2rem; }
+    .app-name { font-size: 0.85rem; }
+}
+
+@media (min-width: 768px) {
+    :root { --primary-padding: 25px; }
+    .admin-header h1 { font-size: 2.5rem; }
+    .admin-subtitle { font-size: 1.1rem; }
+    .apps-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 25px; }
+    .app-card { min-height: 140px; padding: 25px 15px; }
+    .app-icon { font-size: 2.5rem; }
+    .app-name { font-size: 0.9rem; }
+    .search-box { max-width: 600px; }
+    .search-box input { padding: 15px 20px; font-size: 1rem; }
+}
+
+@media (min-width: 1024px) {
+    .apps-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+}
+
+/* Password Gate */
+.password-gate {
+    text-align: center;
+    padding: 50px 20px;
+    max-width: 400px;
+    margin: 0 auto;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.password-gate h2 {
+    color: var(--light);
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.password-gate p {
+    color: var(--light-gray);
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+}
+
+.password-gate input {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--light);
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+.password-gate input:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.password-gate button {
+    width: 100%;
+    padding: 12px 20px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.password-gate button:hover {
+    background: #059669;
+}
+
+.password-error {
+    color: var(--danger);
+    font-size: 0.9rem;
+    margin-top: 10px;
+    display: none;
+}
