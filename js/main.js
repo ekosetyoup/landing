@@ -726,63 +726,150 @@
 	  el.innerHTML = '<i class="fas fa-clock"></i> ' + minutes + ' menit baca';
 	}
 
-	/* ========== 20. SITEMAP ARTICLES ========== */
+	/* ========== 20. SITEMAP TABLE ========== */
 	function initSitemap() {
-	  const container = document.getElementById('sitemap-articles');
+	  const container = document.getElementById('sitemap-table-container');
 	  if (!container) return;
-
-	  // Fetch semua post (maks 150)
-	  const feedUrl = '/feeds/posts/default?alt=json&max-results=150';
-
-	  fetch(feedUrl)
-		.then(res => res.json())
-		.then(data => {
-		  const entries = data.feed.entry || [];
-		  if (entries.length === 0) {
-			container.innerHTML = '<p style="text-align: center; color: #888;">Belum ada artikel.</p>';
-			return;
-		  }
-
-		  // Kelompokkan per label
-		  const grouped = {};
-		  entries.forEach(entry => {
-			const title = entry.title.$t;
-			const link = entry.link.find(l => l.rel === 'alternate').href;
-			const labels = (entry.category || []).map(c => c.term);
-
-			if (labels.length === 0) {
-			  labels.push('Tanpa Label');
-			}
-
-			labels.forEach(label => {
-			  if (!grouped[label]) grouped[label] = [];
-			  grouped[label].push({ title, link });
-			});
-		  });
-
-		  // Sort label alphabetically
-		  const sortedLabels = Object.keys(grouped).sort();
-
-		  // Render
-		  let html = '<div class="sitemap-articles">';
-		  sortedLabels.forEach(label => {
-			html += '<div class="sitemap-article-group">';
-			html += '<h3 class="sitemap-article-title"><i class="fas fa-tag"></i> ' + label + ' <span class="sitemap-article-count">(' + grouped[label].length + ')</span></h3>';
-			html += '<ul>';
-			grouped[label].forEach(post => {
-			  html += '<li><a href="' + post.link + '">' + post.title + '</a></li>';
-			});
-			html += '</ul>';
-			html += '</div>';
-		  });
-		  html += '</div>';
-		  container.innerHTML = html;
-		})
-		.catch(err => {
-		  console.warn('[Sitemap] Gagal fetch:', err);
-		  container.innerHTML = '<p style="text-align: center; color: #888;">Gagal memuat artikel.</p>';
-		});
-	}
+	
+	  // ===== KONFIGURASI =====
+	  const ITEMS_PER_PAGE = 10;
+	  let allItems = [];
+	  let filteredItems = [];
+	  let currentPage = 1;
+	
+	  // ===== DATA HALAMAN STATIS (HARDCODE) =====
+	  // Kamu bisa tambah/ubah halaman statis di sini
+	  const staticPages = [
+	    { title: 'Beranda', date: '-', category: 'Halaman', url: '/' },
+	    { title: 'Kebijakan Privasi', date: '-', category: 'Legal', url: '/p/privacy-policy.html' },
+	    { title: 'Syarat & Ketentuan', date: '-', category: 'Legal', url: '/p/terms-conditions.html' },
+	    { title: 'Kebijakan Layanan', date: '-', category: 'Legal', url: '/p/service-policy.html' },
+	    { title: 'Pengembalian Dana', date: '-', category: 'Legal', url: '/p/refund-policy.html' },
+	    { title: 'Penafian', date: '-', category: 'Legal', url: '/p/disclaimer.html' },
+	    { title: 'Kontak', date: '-', category: 'Halaman', url: '/p/contacts.html' },
+	    { title: 'Semua Panduan', date: '-', category: 'Panduan', url: '/p/panduan.html' },
+	    { title: 'Sitemap', date: '-', category: 'Halaman', url: '/p/sitemap.html' }
+	  ];
+	
+	  // ===== RENDER TABEL =====
+	  function renderTable() {
+	    const start = (currentPage - 1) * ITEMS_PER_PAGE;
+	    const end = start + ITEMS_PER_PAGE;
+	    const pageItems = filteredItems.slice(start, end);
+	    const totalPages = Math.ceil(filteredItems.length / ITEMS_PER_PAGE);
+	
+	    // Build HTML tabel
+	    let html = '<table class="sitemap-table">';
+	    html += '<thead><tr><th>Judul</th><th>Tanggal</th><th>Kategori</th></tr></thead>';
+	    html += '<tbody>';
+	
+	    if (pageItems.length === 0) {
+	      html += '<tr><td colspan="3" style="text-align:center;">Tidak ada data.</td></tr>';
+	    } else {
+	      pageItems.forEach(function(item) {
+	        html += '<tr>';
+	        html += '<td><a href="' + item.url + '">' + item.title + '</a></td>';
+	        html += '<td>' + item.date + '</td>';
+	        html += '<td>' + item.category + '</td>';
+	        html += '</tr>';
+	      });
+	    }
+	
+	    html += '</tbody></table>';
+	    container.innerHTML = html;
+	
+	    // ===== RENDER PAGINATION =====
+	    const pagination = document.getElementById('sitemap-pagination');
+	    if (!pagination) return;
+	
+	    if (totalPages <= 1) {
+	      pagination.innerHTML = '';
+	      return;
+	    }
+	
+	    let pagHTML = '<div class="sitemap-pagination-inner">';
+	    pagHTML += '<span class="sitemap-page-info">Menampilkan ' + (start + 1) + '–' + Math.min(end, filteredItems.length) + ' dari ' + filteredItems.length + ' entri</span>';
+	    pagHTML += '<button class="sitemap-page-btn" data-page="' + (currentPage - 1) + '"' + (currentPage === 1 ? ' disabled' : '') + '>‹ Sebelumnya</button>';
+	
+	    for (let i = 1; i <= totalPages; i++) {
+	      pagHTML += '<button class="sitemap-page-btn' + (i === currentPage ? ' active' : '') + '" data-page="' + i + '">' + i + '</button>';
+	    }
+	
+	    pagHTML += '<button class="sitemap-page-btn" data-page="' + (currentPage + 1) + '"' + (currentPage === totalPages ? ' disabled' : '') + '>Selanjutnya ›</button>';
+	    pagHTML += '</div>';
+	
+	    pagination.innerHTML = pagHTML;
+	
+	    // Attach event listener ke tombol pagination
+	    pagination.querySelectorAll('.sitemap-page-btn').forEach(function(btn) {
+	      btn.addEventListener('click', function() {
+	        const page = parseInt(this.dataset.page);
+	        if (page && page !== currentPage) {
+	          currentPage = page;
+	          renderTable();
+	          // Scroll ke atas tabel
+	          container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+	        }
+	      });
+	    });
+	  }
+	
+	  // ===== FETCH ARTIKEL DARI RSS FEED =====
+	  function fetchArticles() {
+	    const feedUrl = '/feeds/posts/default?alt=json&max-results=150';
+	
+	    fetch(feedUrl)
+	      .then(function(res) { return res.json(); })
+	      .then(function(data) {
+	        const entries = data.feed.entry || [];
+	        const articles = entries.map(function(entry) {
+	          const title = entry.title.$t;
+	          const link = entry.link.find(function(l) { return l.rel === 'alternate'; }).href;
+	          const labels = (entry.category || []).map(function(c) { return c.term; }).join(', ') || 'Tanpa Label';
+	          const date = new Date(entry.published.$t).toLocaleDateString('id-ID', {
+	            day: 'numeric', month: 'short', year: 'numeric'
+	          });
+	
+	          return {
+	            title: title,
+	            date: date,
+	            category: labels,
+	            url: link
+	          };
+	        });
+	
+	        // Gabungkan halaman statis + artikel
+	        allItems = staticPages.concat(articles);
+	        filteredItems = allItems;
+	        renderTable();
+	      })
+	      .catch(function(err) {
+	        console.warn('[Sitemap] Gagal fetch artikel:', err);
+	        // Jika gagal, tetap tampilkan halaman statis
+	        allItems = staticPages;
+	        filteredItems = allItems;
+	        renderTable();
+	      });
+	  }
+	
+	  // ===== SEARCH =====
+	  const searchInput = document.getElementById('sitemap-search');
+	  if (searchInput) {
+	    searchInput.addEventListener('input', function() {
+	      const term = this.value.toLowerCase().trim();
+	      if (!term) {
+	        filteredItems = allItems;
+	      } else {
+	        filteredItems = allItems.filter(function(item) {
+	          return item.title.toLowerCase().includes(term) ||
+	                 item.category.toLowerCase().includes(term) ||
+	                 item.date.toLowerCase().includes(term);
+	        });
+	      }
+	      currentPage = 1;
+	      renderTable();
+	    });
+	  }
 
   /* ========== INIT ========== */
   function init() {
@@ -808,6 +895,7 @@
 	initRelatedPosts();
 	initReadingTime();
 	initSitemap();
+	fetchArticles();
   }
 
   if (document.readyState === 'loading') {
