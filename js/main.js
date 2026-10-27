@@ -870,6 +870,7 @@
 	      renderTable();
 	    });
 	  }
+	}
 
   /* ========== INIT ========== */
   function init() {
