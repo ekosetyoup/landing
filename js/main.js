@@ -870,6 +870,9 @@
 	      renderTable();
 	    });
 	  }
+	
+	  // ===== INIT =====
+	  fetchArticles();
 	}
 
   /* ========== INIT ========== */
@@ -896,7 +899,6 @@
 	initRelatedPosts();
 	initReadingTime();
 	initSitemap();
-	fetchArticles();
   }
 
   if (document.readyState === 'loading') {
