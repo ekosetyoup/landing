@@ -16,13 +16,12 @@ window.ADMIN_DATA = {
     {
       name: 'Layer 0 - Root',
       items: [
-        { name: 'PTP Ahu', url: 'https://ptp.ahu.go.id/beranda', icon: 'fas fa-landmark' },
-        { name: 'OSS', url: 'https://oss.go.id/', icon: 'fas fa-file-contract' },
-        { name: 'Pajak (Coretax)', url: 'https://coretaxdjp.pajak.go.id/', icon: 'fas fa-money-bill-wave' },
-        { name: 'Merek DGIP', url: 'https://merek.dgip.go.id/', icon: 'fas fa-trademark' },
-        { name: 'PSE Komdigi', url: 'https://pse.komdigi.go.id/login', icon: 'fas fa-shield-alt' },
-        { name: 'BPJS TKU', url: 'https://www.bpjsketenagakerjaan.go.id/', icon: 'fas fa-hard-hat' },
-        // Tambah link lain di sini...
+		{ name: 'Gmail', url: 'https://mail.google.com/mail/u/0/#inbox', icon: 'fas fa-envelope-open-text' },
+        { name: 'Qwords', url: 'https://portal.qwords.com/login', icon: 'fas fa-server' },
+		{ name: 'ArenHost', url: 'https://arenhost.id/client/clientarea.php', icon: 'fa-solid fa-globe' },
+		{ name: 'Download Keepass', url: 'https://play.google.com/store/apps/details?id=com.kunzisoft.keepass.free', icon: 'fa-solid fa-key' },
+		{ name: 'Download Authy', url: 'https://play.google.com/store/apps/details?id=com.authy.authy', icon: 'fa-light fa-link' },
+		{ name: 'Google Drive', url: 'https://drive.google.com/', icon: 'fab fa-google-drive' },
       ]
     },
 
@@ -32,11 +31,11 @@ window.ADMIN_DATA = {
     {
       name: 'Layer 1 - Legal',
       items: [
-        { name: 'Qwords', url: 'https://www.qwords.com/', icon: 'fas fa-server' },
-        { name: 'phpMyAdmin', url: 'http://168.110.213.0:18080/', icon: 'fas fa-database' },
-        { name: 'aaPanel', url: 'http://168.110.213.0:19100/', icon: 'fas fa-desktop' },
-        { name: 'Cloudflare', url: 'https://dash.cloudflare.com/', icon: 'fas fa-cloud' },
-        // Tambah link lain di sini...
+		{ name: 'AHU PTP', url: 'https://elayanan.ahu.go.id/login', icon: 'fas fa-landmark' },
+        { name: 'OSS RBA', url: 'https://ui-login.oss.go.id/login', icon: 'fas fa-file-contract' },
+        { name: 'CORETAX)', url: 'https://coretaxdjp.pajak.go.id/identityproviderportal/Account/Login', icon: 'fas fa-money-bill-wave' },
+        { name: 'BPJS TKU', url: 'https://sipp.bpjsketenagakerjaan.go.id/', icon: 'fas fa-hard-hat' },
+		{ name: 'PRIVY', url: 'https://oauth2.privypass.id/login?response_type=code&client_id=aZBguRdDeyGeCyWWa2VjagjVImejopIySR4JqG2S_Ew&redirect_uri=https://super-app.privy.id/auth/callback&scope=write+read+public+application:manage&state=%7b%22redirect%22:%22/document/list/todo%253F_gl=1*y6e4b6*_gcl_au*MTM4MDU2MTIxNC4xNzczODc5MDYy%22,%22profile%22:%22oauth%22%7d&register=true', icon: 'fa-solid fa-heart-circle-check' },
       ]
     },
 
@@ -46,10 +45,12 @@ window.ADMIN_DATA = {
     {
       name: 'Layer 2 - Infrastruktur',
       items: [
-        { name: 'Domain Rumahweb', url: 'https://member.rumahweb.com/', icon: 'fas fa-globe' },
-        { name: 'Domain IDCloudHost', url: 'https://idcloudhost.com/', icon: 'fas fa-globe' },
-        { name: 'DNS Cloudflare', url: 'https://dash.cloudflare.com/', icon: 'fas fa-network-wired' },
-        // Tambah link lain di sini...
+        { name: 'DNS Cloudflare', url: 'https://dash.cloudflare.com/login', icon: 'fa-brands fa-cloudflare' },
+		{ name: 'Oracle OCI', url: 'https://www.oracle.com/asean/cloud/sign-in.html', icon: 'fa-solid fa-circle-notch' },
+        { name: 'GitHub', url: 'https://github.com/login', icon: 'fab fa-github' },
+		{ name: 'Statping-ng', url: 'https://status.zaynayan.my.id/login', icon: 'fa-solid fa-chart-simple' },
+		{ name: 'HetrixTools', url: 'https://hetrixtools.com/login/', icon: 'fa-solid fa-chart-column' },
+        { name: 'Zoho Mail', url: 'https://mailadmin.zoho.com/', icon: 'fas fa-envelope' },
       ]
     },
 
@@ -59,10 +60,12 @@ window.ADMIN_DATA = {
     {
       name: 'Layer 3 - Operasional',
       items: [
-        { name: 'WordPress', url: 'https://panduan.zaynayan.my.id/wp-login.php', icon: 'fab fa-wordpress' },
+        { name: 'Admin BukaOlshop', url: 'https://admin.bukaolshop.com/', icon: 'fa-solid fa-user-tie' },
         { name: 'Blogger', url: 'https://www.blogger.com/', icon: 'fab fa-blogger' },
-        { name: 'GitHub', url: 'https://github.com/', icon: 'fab fa-github' },
-        // Tambah link lain di sini...
+        { name: 'Vercel', url: 'https://vercel.com/login', icon: 'fa-solid fa-caret-up' },
+        { name: 'Google Analytics', url: 'https://analytics.google.com/', icon: 'fas fa-chart-line' },
+        { name: 'Search Console', url: 'https://search.google.com/search-console', icon: 'fas fa-search' },
+		{ name: 'Google Ads', url: 'https://ads.google.com/', icon: 'fas fa-bullhorn' },
       ]
     },
 
@@ -72,11 +75,8 @@ window.ADMIN_DATA = {
     {
       name: 'Layer 4 - Payment',
       items: [
-        { name: 'Zoho Mail', url: 'https://www.zoho.com/id/mail/', icon: 'fas fa-envelope' },
-        { name: 'Gmail', url: 'https://mail.google.com/', icon: 'fas fa-envelope-open-text' },
-        { name: 'Telegram Web', url: 'https://web.telegram.org/', icon: 'fab fa-telegram' },
-        { name: 'WhatsApp Web', url: 'https://web.whatsapp.com/', icon: 'fab fa-whatsapp' },
-        // Tambah link lain di sini...
+        { name: 'Midtrans', url: 'https://dashboard.midtrans.com/login', icon: 'fa-solid fa-lines-leaning' },
+        { name: 'Tripay', url: 'https://tripay.id/login', icon: 'fa-solid fa-wallet' },
       ]
     },
 
@@ -86,11 +86,10 @@ window.ADMIN_DATA = {
     {
       name: 'Layer 5 - Supplier',
       items: [
-        { name: 'Midtrans', url: 'https://dashboard.midtrans.com/', icon: 'fas fa-credit-card' },
-        { name: 'Xendit', url: 'https://dashboard.xendit.co/', icon: 'fas fa-money-check' },
-        { name: 'Bank BCA', url: 'https://ibank.klikbca.com/', icon: 'fas fa-university' },
-        { name: 'Bank Mandiri', url: 'https://ib.bankmandiri.co.id/', icon: 'fas fa-university' },
-        // Tambah link lain di sini...
+        { name: 'ApiGames', url: 'https://member.apigames.id/login', icon: 'fa-brands fa-algolia' },
+        { name: 'Toko Voucher', url: 'https://member.tokovoucher.net/login', icon: 'fa-solid fa-t' },
+        { name: 'DigiFlazz', url: 'https://member.digiflazz.com/login', icon: 'fa-solid fa-d' },
+        { name: 'Orderkuota', url: 'https://orderkuota.com/user/login', icon: 'fa-brands fa-odnoklassniki' },
       ]
     },
 
@@ -100,12 +99,19 @@ window.ADMIN_DATA = {
     {
       name: 'Layer 6 - Distribusi',
       items: [
-        { name: 'Facebook Page', url: 'https://www.facebook.com/zaynayanstore', icon: 'fab fa-facebook' },
+        { name: 'Website', url: 'https://www.zaynayanstore.com', icon: 'fab fa-facebook' },
+		{ name: 'Facebook Page', url: 'https://www.facebook.com/zaynayanstore', icon: 'fab fa-facebook' },
         { name: 'Instagram', url: 'https://www.instagram.com/zaynayanstore', icon: 'fab fa-instagram' },
+		{ name: 'Meta Business', url: 'https://www.facebook.com/zaynayanstore', icon: 'fab fa-facebook' },
         { name: 'TikTok', url: 'https://www.tiktok.com/@zaynayanstores', icon: 'fab fa-tiktok' },
         { name: 'YouTube Studio', url: 'https://studio.youtube.com/', icon: 'fab fa-youtube' },
-        { name: 'Google Ads', url: 'https://ads.google.com/', icon: 'fas fa-bullhorn' },
-        // Tambah link lain di sini...
+        { name: 's.id', url: 'https://ads.google.com/', icon: 'fas fa-bullhorn' },
+		{ name: 'Linktr.ee', url: 'https://ads.google.com/', icon: 'fas fa-bullhorn' },
+		{ name: 'Lynk.id', url: 'https://ads.google.com/', icon: 'fas fa-bullhorn' },
+		{ name: 'APKPure', url: 'https://ads.google.com/', icon: 'fas fa-bullhorn' },
+		{ name: 'apk.com', url: 'https://ads.google.com/', icon: 'fas fa-bullhorn' },
+		{ name: 'Sociabuzz', url: 'https://ads.google.com/', icon: 'fas fa-bullhorn' },
+        { name: 'Saweria', url: 'https://ads.google.com/', icon: 'fas fa-bullhorn' },
       ]
     },
 
@@ -115,11 +121,8 @@ window.ADMIN_DATA = {
     {
       name: 'Layer 7 - Customer Service',
       items: [
-        { name: 'Google Analytics', url: 'https://analytics.google.com/', icon: 'fas fa-chart-line' },
-        { name: 'Search Console', url: 'https://search.google.com/search-console', icon: 'fas fa-search' },
-        { name: 'Status Server', url: 'https://status.zaynayanstore.com', icon: 'fas fa-heartbeat' },
-        { name: 'UptimeRobot', url: 'https://uptimerobot.com/', icon: 'fas fa-server' },
-        // Tambah link lain di sini...
+        { name: 'WhatsApp Business', url: 'https://wa.link/fvftjn', icon: '<i class="fa-brands fa-whatsapp"></i>' },
+        { name: 'Channel Telegram', url: 'https://t.me/zaynayanstore_official', icon: 'fa-brands fa-telegram' },
       ]
     },
 
