@@ -20,7 +20,7 @@ window.ADMIN_DATA = {
         { name: 'Qwords', url: 'https://portal.qwords.com/login', icon: 'fas fa-server' },
 		{ name: 'ArenHost', url: 'https://arenhost.id/client/clientarea.php', icon: 'fa-solid fa-globe' },
 		{ name: 'Download Keepass', url: 'https://play.google.com/store/apps/details?id=com.kunzisoft.keepass.free', icon: 'fa-solid fa-key' },
-		{ name: 'Download Authy', url: 'https://play.google.com/store/apps/details?id=com.authy.authy', icon: 'fa-light fa-link' },
+		{ name: 'Download Authy', url: 'https://play.google.com/store/apps/details?id=com.authy.authy', icon: 'fa-solid fa-unlock-keyhole' },
 		{ name: 'Google Drive', url: 'https://drive.google.com/', icon: 'fab fa-google-drive' },
       ]
     },
@@ -33,7 +33,7 @@ window.ADMIN_DATA = {
       items: [
 		{ name: 'AHU PTP', url: 'https://elayanan.ahu.go.id/login', icon: 'fas fa-landmark' },
         { name: 'OSS RBA', url: 'https://ui-login.oss.go.id/login', icon: 'fas fa-file-contract' },
-        { name: 'CORETAX)', url: 'https://coretaxdjp.pajak.go.id/identityproviderportal/Account/Login', icon: 'fas fa-money-bill-wave' },
+        { name: 'CORETAX', url: 'https://coretaxdjp.pajak.go.id/identityproviderportal/Account/Login', icon: 'fas fa-money-bill-wave' },
         { name: 'BPJS TKU', url: 'https://sipp.bpjsketenagakerjaan.go.id/', icon: 'fas fa-hard-hat' },
 		{ name: 'PRIVY', url: 'https://oauth2.privypass.id/login?response_type=code&client_id=aZBguRdDeyGeCyWWa2VjagjVImejopIySR4JqG2S_Ew&redirect_uri=https://super-app.privy.id/auth/callback&scope=write+read+public+application:manage&state=%7b%22redirect%22:%22/document/list/todo%253F_gl=1*y6e4b6*_gcl_au*MTM4MDU2MTIxNC4xNzczODc5MDYy%22,%22profile%22:%22oauth%22%7d&register=true', icon: 'fa-solid fa-heart-circle-check' },
       ]
@@ -99,19 +99,19 @@ window.ADMIN_DATA = {
     {
       name: 'Layer 6 - Distribusi',
       items: [
-        { name: 'Website', url: 'https://www.zaynayanstore.com', icon: 'fab fa-facebook' },
+        { name: 'Website', url: 'https://www.zaynayanstore.com', icon: 'fa-solid fa-globe' },
 		{ name: 'Facebook Page', url: 'https://www.facebook.com/zaynayanstore', icon: 'fab fa-facebook' },
         { name: 'Instagram', url: 'https://www.instagram.com/zaynayanstore', icon: 'fab fa-instagram' },
-		{ name: 'Meta Business', url: 'https://www.facebook.com/zaynayanstore', icon: 'fab fa-facebook' },
+		{ name: 'Meta Business', url: 'https://www.facebook.com/zaynayanstore', icon: 'fa-brands fa-meta' },
         { name: 'TikTok', url: 'https://www.tiktok.com/@zaynayanstores', icon: 'fab fa-tiktok' },
         { name: 'YouTube Studio', url: 'https://studio.youtube.com/', icon: 'fab fa-youtube' },
-        { name: 's.id', url: 'https://ads.google.com/', icon: 'fas fa-bullhorn' },
-		{ name: 'Linktr.ee', url: 'https://ads.google.com/', icon: 'fas fa-bullhorn' },
-		{ name: 'Lynk.id', url: 'https://ads.google.com/', icon: 'fas fa-bullhorn' },
-		{ name: 'APKPure', url: 'https://ads.google.com/', icon: 'fas fa-bullhorn' },
-		{ name: 'apk.com', url: 'https://ads.google.com/', icon: 'fas fa-bullhorn' },
-		{ name: 'Sociabuzz', url: 'https://ads.google.com/', icon: 'fas fa-bullhorn' },
-        { name: 'Saweria', url: 'https://ads.google.com/', icon: 'fas fa-bullhorn' },
+        { name: 's.id', url: 'https://ads.google.com/', icon: 'fa-brands fa-stripe-s' },
+		{ name: 'Linktr.ee', url: 'https://ads.google.com/', icon: 'fa-brands fa-linktree' },
+		{ name: 'Lynk.id', url: 'https://ads.google.com/', icon: 'fa-solid fa-l' },
+		{ name: 'APKPure', url: 'https://ads.google.com/', icon: 'fa-brands fa-app-store-ios' },
+		{ name: 'apk.com', url: 'https://ads.google.com/', icon: 'fa-brands fa-app-store-ios' },
+		{ name: 'Sociabuzz', url: 'https://ads.google.com/', icon: 'fa-solid fa-link' },
+        { name: 'Saweria', url: 'https://ads.google.com/', icon: 'fa-solid fa-s' },
       ]
     },
 
@@ -121,7 +121,7 @@ window.ADMIN_DATA = {
     {
       name: 'Layer 7 - Customer Service',
       items: [
-        { name: 'WhatsApp Business', url: 'https://wa.link/fvftjn', icon: '<i class="fa-brands fa-whatsapp"></i>' },
+        { name: 'WhatsApp Business', url: 'https://wa.link/fvftjn', icon: 'fa-brands fa-whatsapp' },
         { name: 'Channel Telegram', url: 'https://t.me/zaynayanstore_official', icon: 'fa-brands fa-telegram' },
       ]
     },
