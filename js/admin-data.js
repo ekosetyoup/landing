@@ -105,13 +105,13 @@ window.ADMIN_DATA = {
 		{ name: 'Meta Business', url: 'https://www.facebook.com/zaynayanstore', icon: 'fa-brands fa-meta' },
         { name: 'TikTok', url: 'https://www.tiktok.com/@zaynayanstores', icon: 'fab fa-tiktok' },
         { name: 'YouTube Studio', url: 'https://studio.youtube.com/', icon: 'fab fa-youtube' },
-        { name: 's.id', url: 'https://ads.google.com/', icon: 'fa-brands fa-stripe-s' },
-		{ name: 'Linktr.ee', url: 'https://ads.google.com/', icon: 'fa-brands fa-linktree' },
-		{ name: 'Lynk.id', url: 'https://ads.google.com/', icon: 'fa-solid fa-l' },
-		{ name: 'APKPure', url: 'https://ads.google.com/', icon: 'fa-brands fa-app-store-ios' },
-		{ name: 'apk.com', url: 'https://ads.google.com/', icon: 'fa-brands fa-app-store-ios' },
-		{ name: 'Sociabuzz', url: 'https://ads.google.com/', icon: 'fa-solid fa-link' },
-        { name: 'Saweria', url: 'https://ads.google.com/', icon: 'fa-solid fa-s' },
+        { name: 's.id', url: 'https://dash.s.id/auth/login', icon: 'fa-brands fa-stripe-s' },
+		{ name: 'Linktr.ee', url: 'https://linktr.ee/universal-login', icon: 'fa-brands fa-linktree' },
+		{ name: 'Lynk.id', url: 'https://lynk.id/login', icon: 'fa-solid fa-l' },
+		{ name: 'APKPure', url: 'https://apkpure.com/login', icon: 'fa-brands fa-app-store-ios' },
+		{ name: 'apk.com', url: 'https://apks.dev/login', icon: 'fa-brands fa-app-store-ios' },
+		{ name: 'Sociabuzz', url: 'https://sociabuzz.com/proaccount/login', icon: 'fa-solid fa-link' },
+        { name: 'Saweria', url: 'https://saweria.co/login', icon: 'fa-solid fa-s' },
       ]
     },
 
@@ -130,13 +130,14 @@ window.ADMIN_DATA = {
     // 9. Checker
     // ═══════════════════════════════════════════════════════
     {
-      name: 'Penyimpanan & File',
+      name: 'Checker',
       items: [
-        { name: 'Google Drive', url: 'https://drive.google.com/', icon: 'fab fa-google-drive' },
-        { name: 'Dropbox', url: 'https://www.dropbox.com/login', icon: 'fab fa-dropbox' },
-        { name: 'Mega', url: 'https://mega.nz/login', icon: 'fas fa-cloud-upload' },
-        { name: 'Terabox', url: 'https://www.terabox.com/', icon: 'fas fa-cloud-upload' },
-        // Tambah link lain di sini...
+        { name: 'DNS Checker', url: 'https://dnschecker.org', icon: 'fa-solid fa-check-to-slot' },
+        { name: 'SSL Server Test', url: 'https://www.ssllabs.com/ssltest/', icon: 'fa-brands fa-expeditedssl' },
+        { name: 'Page Speeds Insight', url: 'https://pagespeed.web.dev', icon: 'fa-solid fa-gauge-high' },
+        { name: 'SEO Meta', url: 'https://validator.schema.org/', icon: 'fa-solid fa-check-double' },
+        { name: 'Pencarian Perseroan', url: 'https://ptp.ahu.go.id/profil', icon: 'fa-solid fa-briefcase' },
+		{ name: 'Cek NPWP', url: 'https://klikpajak.id/cek-validasi-npwp/', icon: 'fa-solid fa-percent' },
       ]
     },
 
@@ -150,7 +151,11 @@ window.ADMIN_DATA = {
         { name: 'TinyPNG', url: 'https://tinypng.com/', icon: 'fas fa-compress' },
         { name: 'JSON Formatter', url: 'https://jsonformatter.org/', icon: 'fas fa-code' },
         { name: 'Regex Tester', url: 'https://regex101.com/', icon: 'fas fa-code' },
-        // Tambah link lain di sini...
+        { name: 'Cloud Converter', url: 'https://cloudconvert.com/', icon: 'fa-solid fa-right-left' },
+		{ name: 'Gif Converter', url: 'https://ezgif.com/', icon: 'fa-solid fa-right-left' },
+		{ name: 'Image Compress', url: 'https://squoosh.app/', icon: 'fa-solid fa-minimize' },
+		{ name: 'Gudang Ikon Brand', url: 'https://dashboardicons.com/icons', icon: 'fa-solid fa-box-open' },
+		{ name: 'Rescale Gambar', url: 'https://waifu2x.io/', icon: 'fa-solid fa-maximize' },
       ]
     }
 
